@@ -11,11 +11,11 @@ import java.sql.SQLException;
 public class UserDao {
     private final ConnectionMaker connectionMaker;
 
-    //관계설정 책임의 분리 (Connection Interface 타입으로 받음)
+    //관계설정 책임의 분리 (Connection Interface 타입으로 받음), 확장에는 열려있음 (OCP)
     public UserDao(ConnectionMaker connectionMaker) {
         this.connectionMaker = connectionMaker;
     }
-
+    //핵심로직은 변경에 닫혀있음
     public void add(User user) throws ClassNotFoundException, SQLException {
         Connection c = connectionMaker.makeConnection();
 
