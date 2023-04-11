@@ -1,13 +1,17 @@
 package com.soon.springexam;
 
-import com.soon.springexam.domain.SUserDao;
+import com.soon.springexam.dao.ConnectionMaker;
+import com.soon.springexam.dao.UserDao;
+import com.soon.springexam.domain.SConnectionMaker;
 import com.soon.springexam.domain.User;
 
 import java.sql.SQLException;
 
 public class App {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        SUserDao dao = new SUserDao();
+        //Runtime 시 구체적인 구현을 한 SConnectionMaker 와의 관계설정 책임
+        ConnectionMaker connectionMaker = new SConnectionMaker();
+        UserDao dao = new UserDao(connectionMaker);
 
         User user = new User();
         user.setId("soon");
