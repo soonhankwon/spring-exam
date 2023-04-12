@@ -4,7 +4,18 @@ import com.soon.springexam.domain.SConnectionMaker;
 
 public class DaoFactory {
     public UserDao userDao() {
-        ConnectionMaker connectionMaker = new SConnectionMaker();
-        return new UserDao(connectionMaker);
+        return new UserDao(connectionMaker());
+    }
+
+    public AccountDao accountDao() {
+        return new AccountDao(connectionMaker());
+    }
+
+    public MessageDao messageDao() {
+        return new MessageDao(connectionMaker());
+    }
+
+    public ConnectionMaker connectionMaker() {
+        return new SConnectionMaker();
     }
 }
